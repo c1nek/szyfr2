@@ -540,6 +540,14 @@ namespace szyfr2
                 wypelnijMacierz(alfabet);
                 wypiszMacierz();
             }
+
+            button2.Enabled = true;
+            button3.Enabled = true;
+            button4.Enabled = true;
+            button5.Enabled = true;
+            button6.Enabled = true;
+            button7.Enabled = true;
+
             
         }
 
@@ -698,6 +706,34 @@ namespace szyfr2
             {
                 MessageBox.Show("Błąd. Nie można zapisać wskazenego pliku! \n " + ex.Message);
             }
+        }
+
+        private void autorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Szyfr Delastella \nMarcin Gluza \n2014 \n\ngumball300@gmail.com", "Autor");
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            textBox1.Clear();
+            tekstZaszyfrowany.Clear();
+            tekstJawny.Clear();
+            button2.Enabled = false;
+            button3.Enabled = false;
+            button4.Enabled = false;
+            button5.Enabled = false;
+            button6.Enabled = false;
+            button7.Enabled = false;
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            tekstJawny.Clear();
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            tekstZaszyfrowany.Clear();
         }
     }
 }
