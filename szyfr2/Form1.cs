@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace szyfr2
 {
@@ -570,6 +571,133 @@ namespace szyfr2
         private void button7_Click(object sender, EventArgs e)
         {
             tekstJawny.Text = deSzyfrDG(usunSpacje(tekstZaszyfrowany.Text));
+        }
+
+        private void zakończProgramToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void otwórzZPlikuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Stream myStream = null;
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+
+            openFileDialog1.InitialDirectory = "c:\\";
+            openFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            openFileDialog1.FilterIndex = 2;
+            openFileDialog1.RestoreDirectory = true;
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    if ((myStream = openFileDialog1.OpenFile()) != null)
+                    {
+                        using (myStream)
+                        {
+                            tekstJawny.Text = File.ReadAllText(openFileDialog1.FileName);
+                            Console.WriteLine("Otwarto plik z tekstem jawnym o nazwie: " + openFileDialog1.FileName);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Błąd. Nie można odczytać wskazenego pliku! \n " + ex.Message);
+                }
+            }
+        }
+
+        private void otwórzZPlikuToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Stream myStream = null;
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+
+            openFileDialog1.InitialDirectory = "c:\\";
+            openFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            openFileDialog1.FilterIndex = 2;
+            openFileDialog1.RestoreDirectory = true;
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    if ((myStream = openFileDialog1.OpenFile()) != null)
+                    {
+                        using (myStream)
+                        {
+                            tekstZaszyfrowany.Text = File.ReadAllText(openFileDialog1.FileName);
+                            Console.WriteLine("Otwarto plik z tekstem zaszyfrowanym o nazwie: " + openFileDialog1.FileName);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Błąd. Nie można odczytać wskazenego pliku! \n " + ex.Message);
+                }
+            }
+        }
+
+        private void zapiszDoPlikuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+
+            saveFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            saveFileDialog1.FilterIndex = 2;
+            saveFileDialog1.RestoreDirectory = true;
+            try
+            {
+
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    {
+
+                        using (StreamWriter sw = new StreamWriter(saveFileDialog1.FileName))
+                        {
+
+                            sw.Write(tekstJawny.Text);
+
+                        }
+
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show("Błąd. Nie można zapisać wskazenego pliku! \n " + ex.Message);
+            }
+        }
+
+        private void zapiszDoPlikuToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+
+            saveFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            saveFileDialog1.FilterIndex = 2;
+            saveFileDialog1.RestoreDirectory = true;
+            try
+            {
+
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    {
+
+                        using (StreamWriter sw = new StreamWriter(saveFileDialog1.FileName))
+                        {
+
+                            sw.Write(tekstZaszyfrowany.Text);
+
+                        }
+
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show("Błąd. Nie można zapisać wskazenego pliku! \n " + ex.Message);
+            }
         }
     }
 }
