@@ -531,7 +531,7 @@ namespace szyfr2
             }
             else
             {
-                klucz = textBox1.Text;
+                klucz = textBox1.Text.ToUpper();
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Wskazany klucz: " + klucz);
                 Console.ResetColor();
@@ -552,33 +552,33 @@ namespace szyfr2
         }
 
         private void button2_Click(object sender, EventArgs e)
-        {         
-            szyfrPoz(tabPomoc(usunSpacje(tekstJawny.Text)));
+        {
+            szyfrPoz(tabPomoc(usunSpacje(tekstJawny.Text.ToUpper())));
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            tekstJawny.Text = deSzyfrPoz(usunSpacje(tekstZaszyfrowany.Text));
+            tekstJawny.Text = deSzyfrPoz(usunSpacje(tekstZaszyfrowany.Text.ToUpper()));
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            szyfrGD(tabPomoc(usunSpacje(tekstJawny.Text)));
+            szyfrGD(tabPomoc(usunSpacje(tekstJawny.Text.ToUpper())));
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            tekstJawny.Text = deSzyfrGD(usunSpacje(tekstZaszyfrowany.Text));
+            tekstJawny.Text = deSzyfrGD(usunSpacje(tekstZaszyfrowany.Text.ToUpper()));
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            szyfrDG(tabPomoc(usunSpacje(tekstJawny.Text)));
+            szyfrDG(tabPomoc(usunSpacje(tekstJawny.Text.ToUpper())));
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            tekstJawny.Text = deSzyfrDG(usunSpacje(tekstZaszyfrowany.Text));
+            tekstJawny.Text = deSzyfrDG(usunSpacje(tekstZaszyfrowany.Text.ToUpper()));
         }
 
         private void zakończProgramToolStripMenuItem_Click(object sender, EventArgs e)
