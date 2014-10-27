@@ -264,21 +264,36 @@ namespace szyfr2
 
         char OdczytajZMacierzy(int wsp2, int wsp1)
         {
-            char literka;
-           wsp1 -= 1;
-           wsp2 -= 1; 
-            literka = macierz[wsp1, wsp2];
-            Console.Write((wsp2+1) +","+ (wsp1+1) +" "+ literka +"\t");
-            return literka;
+             char literka = 'Q';
+             try
+             {
+                 wsp1 -= 1;
+                 wsp2 -= 1;
+                 literka = macierz[wsp1, wsp2];
+                 Console.Write((wsp2 + 1) + "," + (wsp1 + 1) + " " + literka + "\t");
+                 return literka;
+             }
+             catch
+             {
+                 return literka;
+             }
         }
         char OdczytajZMacierzy2(int wsp1, int wsp2)
         {
-            char literka;
-           // wsp1 -= 1;
-           // wsp2 -= 1;
-            literka = macierz[wsp2, wsp1];
-            Console.Write((wsp1 + 1) + "," + (wsp2 + 1) + " " + literka + "\t");
-            return literka;
+            char literka = 'Q';
+            try
+            {
+                
+                // wsp1 -= 1;
+                // wsp2 -= 1;
+                literka = macierz[wsp2, wsp1];
+                Console.Write((wsp1 + 1) + "," + (wsp2 + 1) + " " + literka + "\t");
+                return literka;
+            }
+            catch (Exception ex)
+            {
+                return literka;
+            }
         }
       
 
@@ -419,7 +434,7 @@ namespace szyfr2
                 licznik += 2;
 
             }
-
+            
             rozszyfr = string.Join("", tekstJawny);
 
             return rozszyfr;
@@ -553,32 +568,58 @@ namespace szyfr2
 
         private void button2_Click(object sender, EventArgs e)
         {
+            
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Szyfrowanie poziome");
+            Console.ResetColor();
             szyfrPoz(tabPomoc(usunSpacje(tekstJawny.Text.ToUpper())));
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("\nDeszyfrowanie poziome");
+            Console.ResetColor();
             tekstJawny.Text = deSzyfrPoz(usunSpacje(tekstZaszyfrowany.Text.ToUpper()));
+
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             szyfrGD(tabPomoc(usunSpacje(tekstJawny.Text.ToUpper())));
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Szyfrowanie góra-dół");
+            Console.ResetColor();
+            szyfrGD(tabPomoc(usunSpacje(tekstJawny.Text.ToUpper())));
+
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
             tekstJawny.Text = deSzyfrGD(usunSpacje(tekstZaszyfrowany.Text.ToUpper()));
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("\nDeszyfrowanie góra-dół");
+            Console.ResetColor();
+            tekstJawny.Text = deSzyfrGD(usunSpacje(tekstZaszyfrowany.Text.ToUpper()));
+
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Szyfrowanie dół-góra");
+            Console.ResetColor();
             szyfrDG(tabPomoc(usunSpacje(tekstJawny.Text.ToUpper())));
+
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("\nDeszyfrowanie dół-góra");
+            Console.ResetColor();
             tekstJawny.Text = deSzyfrDG(usunSpacje(tekstZaszyfrowany.Text.ToUpper()));
+
         }
 
         private void zakończProgramToolStripMenuItem_Click(object sender, EventArgs e)
